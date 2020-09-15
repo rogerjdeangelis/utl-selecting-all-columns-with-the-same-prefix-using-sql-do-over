@@ -1,6 +1,6 @@
 Selecting all colums with the same prefix using sql                                                                
                                                                                                                    
-   Two Solutions                                                                                                   
+   Three Solutions                                                                                                 
                                                                                                                    
        a. Ted clay                                                                                                 
           www.davidkatzconsulting.com                                                                              
@@ -8,6 +8,23 @@ Selecting all colums with the same prefix using sql
        b. Bart                                                                                                     
           Bartosz Jablonski                                                                                        
           yabwon@gmail.com                                                                                         
+                                                                                                                   
+       c. colon (somewhat less flexible because requires starting text)                                            
+          FreelanceReinhard                                                                                        
+          https://communities.sas.com/t5/user/viewprofilepage/user-id/32733                                        
+                                                                                                                   
+          data want_datstep;                                                                                       
+             set sashelp.baseball(keep=c:);                                                                        
+          run;quit;                                                                                                
+                                                                                                                   
+          * note you cannt use the colon on the select statement, but you can on from statement                    
+          proc sql;                                                                                                
+             select                                                                                                
+                 *                                                                                                 
+             from                                                                                                  
+                 sashelp.baseball(keep=c:)                                                                         
+          ;quit;                                                                                                   
+                                                                                                                   
 github                                                                                                             
 https://tinyurl.com/y5wct8yh                                                                                       
 https://github.com/rogerjdeangelis/utl-selecting-all-columns-with-the-same-prefix-using-sql-do-over                
@@ -167,5 +184,27 @@ proc sql;
      sashelp.baseball(obs=5)                                                                                       
 ;quit;                                                                                                             
                                                                                                                    
+ /*                  _                                                                                             
+  ___      ___ ___ | | ___  _ __                                                                                   
+ / __|    / __/ _ \| |/ _ \| `_ \                                                                                  
+| (__ _  | (_| (_) | | (_) | | | |                                                                                 
+ \___(_)  \___\___/|_|\___/|_| |_|                                                                                 
+                                                                                                                   
+*/                                                                                                                 
+                                                                                                                   
+data want_datstep;                                                                                                 
+   set sashelp.baseball(keep=c:);                                                                                  
+run;quit;                                                                                                          
+                                                                                                                   
+* note you cannt use the colon on the select statement, but you can on from statement                              
+proc sql;                                                                                                          
+   select                                                                                                          
+       *                                                                                                           
+   from                                                                                                            
+       sashelp.baseball(keep=c:)                                                                                   
+;quit;                                                                                                             
+                                                                                                                   
+                                                                                                                   
+                                                                                           
                                                                                                                    
                                                                                                                    
